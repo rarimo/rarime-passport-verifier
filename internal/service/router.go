@@ -53,7 +53,7 @@ func (s *service) router() chi.Router {
 			handlers.CtxPoints(s.cfg.Points()),
 		),
 	)
-	r.Route("/integrations/identity-provider-service", func(r chi.Router) {
+	r.Route("/integrations/rarime-passport-verifier", func(r chi.Router) {
 		r.Route("/v1", func(r chi.Router) {
 			r.Post("/create-identity", handlers.CreateIdentity)
 			r.Get("/gist-data", handlers.GetGistData)

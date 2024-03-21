@@ -1,4 +1,4 @@
-# identity-provider-service
+# rarime-passport-verifier
 
 ## Description
 
@@ -9,7 +9,7 @@ This service is responsible for verifying a user-provided ZKP, real-world identi
 ### create_identity
 
 `create_identity` verifies a user-provided ZKP that proves the real-world identity ownership, validates this real-world identity certificate and issues a PollsCredential claim.<br><br>
-Path: `POST /integrations/identity-provider-service/v1/create-identity`<br>
+Path: `POST /integrations/rarime-passport-verifier/v1/create-identity`<br>
 Payload example (proof is provided as an example and actually does not prove anything):
 ```json
 {
@@ -93,7 +93,7 @@ The only Issuer Node that is used is CreateCredential that issues claim. This cl
 
   ```
   git clone github.com/rarimo/rarime-passport-verifier
-  cd identity-provider-service
+  cd rarime-passport-verifier
   go build main.go
   export KV_VIPER_FILE=./config.yaml
   ./main migrate up

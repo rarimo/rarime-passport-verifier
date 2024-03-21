@@ -2,14 +2,16 @@ package handlers
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/ethereum/go-ethereum/ethclient"
 	stateabi "github.com/iden3/contracts-abi/state/go/abi"
 	"github.com/rarimo/rarime-passport-verifier/internal/config"
 	"github.com/rarimo/rarime-passport-verifier/internal/data"
 	"github.com/rarimo/rarime-passport-verifier/internal/service/issuer"
 	"github.com/rarimo/rarime-passport-verifier/internal/service/vault"
+	points "github.com/rarimo/rarime-points-svc/pkg/connector"
 	"gitlab.com/distributed_lab/logan/v3"
-	"net/http"
 )
 
 type ctxKey int
@@ -22,6 +24,7 @@ const (
 	issuerCtxKey
 	vaultClientCtxKey
 	ethClientCtxKey
+	pointsCtxKey
 )
 
 func CtxLog(entry *logan.Entry) func(context.Context) context.Context {
@@ -92,4 +95,14 @@ func CtxEthClient(client *ethclient.Client) func(context.Context) context.Contex
 
 func EthClient(r *http.Request) *ethclient.Client {
 	return r.Context().Value(ethClientCtxKey).(*ethclient.Client)
+}
+
+func CtxPoints(pointsCon *points.Client) func(context.Context) context.Context {
+	return func(ctx context.Context) context.Context {
+		return context.WithValue(ctx, pointsCtxKey, *pointsCon)
+	}
+}
+
+func Points(r *http.Request) *points.Client {
+	return r.Context().Value(pointsCtxKey).(*points.Client)
 }

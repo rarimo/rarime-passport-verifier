@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"bytes"
+	"context"
 	"crypto"
 	"crypto/ecdsa"
 	"crypto/rsa"
@@ -26,6 +27,7 @@ import (
 	"github.com/rarimo/rarime-passport-verifier/internal/service/api/requests"
 	"github.com/rarimo/rarime-passport-verifier/internal/service/issuer"
 	"github.com/rarimo/rarime-passport-verifier/resources"
+	points "github.com/rarimo/rarime-points-svc/pkg/connector"
 	"gitlab.com/distributed_lab/ape"
 	"gitlab.com/distributed_lab/ape/problems"
 	"gitlab.com/distributed_lab/logan/v3/errors"
@@ -152,7 +154,27 @@ func CreateIdentity(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	issuingAuthority, err := strconv.Atoi(req.Data.ZKProof.PubSignals[2])
+	if err != nil {
+		Log(r).WithError(err).Error("failed to convert string to int")
+		ape.RenderErr(w, problems.InternalError())
+		return
+	}
+
 	if claim != nil {
+		err = Points(r).VerifyPassport(context.Background(), points.VerifyPassportRequest{
+			UserDID:    claim.UserDID,
+			Hash:       claim.DocumentHash,
+			SharedData: []string{"age", "nationality"},
+			// 8571562 is USA authority
+			IsUSA: 8571562 == issuingAuthority,
+		})
+		if err != nil {
+			Log(r).WithError(err).Error("failed to verify passport and get points")
+			ape.RenderErr(w, problems.InternalError())
+			return
+		}
+
 		response := resources.ClaimResponse{
 			Data: resources.Claim{
 				Key: resources.Key{
@@ -173,13 +195,6 @@ func CreateIdentity(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		Log(r).WithError(err).Error("failed to get expiration time")
 		ape.RenderErr(w, problems.BadRequest(err)...)
-		return
-	}
-
-	issuingAuthority, err := strconv.Atoi(req.Data.ZKProof.PubSignals[2])
-	if err != nil {
-		Log(r).WithError(err).Error("failed to convert string to int")
-		ape.RenderErr(w, problems.InternalError())
 		return
 	}
 
@@ -244,6 +259,19 @@ func CreateIdentity(w http.ResponseWriter, r *http.Request) {
 	}); err != nil {
 		Log(r).WithError(err).Error("failed to execute SQL transaction")
 		// error was rendered beforehand
+		return
+	}
+
+	err = Points(r).VerifyPassport(context.Background(), points.VerifyPassportRequest{
+		UserDID:    req.Data.ID.String(),
+		Hash:       hash.String(),
+		SharedData: []string{"age", "nationality"},
+		// 8571562 is USA authority
+		IsUSA: 8571562 == issuingAuthority,
+	})
+	if err != nil {
+		Log(r).WithError(err).Error("failed to verify passport and get points")
+		ape.RenderErr(w, problems.InternalError())
 		return
 	}
 

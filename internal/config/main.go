@@ -1,6 +1,7 @@
 package config
 
 import (
+	points "github.com/rarimo/rarime-points-svc/pkg/connector"
 	"gitlab.com/distributed_lab/kit/comfig"
 	"gitlab.com/distributed_lab/kit/copus"
 	"gitlab.com/distributed_lab/kit/copus/types"
@@ -18,6 +19,7 @@ type Config interface {
 	VerifierConfiger
 	NetworkConfiger
 	VaultConfiger
+	points.Pointer
 }
 
 type config struct {
@@ -31,6 +33,7 @@ type config struct {
 	VerifierConfiger
 	NetworkConfiger
 	VaultConfiger
+	points.Pointer
 }
 
 func New(getter kv.Getter) Config {
@@ -44,5 +47,6 @@ func New(getter kv.Getter) Config {
 		VerifierConfiger: NewVerifierConfiger(getter),
 		NetworkConfiger:  NewNetworkConfiger(getter),
 		VaultConfiger:    NewVaultConfiger(getter),
+		Pointer:          points.NewPointer(getter),
 	}
 }

@@ -36,3 +36,6 @@ cop:
   upstream: "http://..."
   service_name: identity-provider-service
   service_port: 80
+
+points:
+  addr: https://...

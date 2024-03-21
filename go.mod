@@ -1,6 +1,6 @@
 module github.com/rarimo/rarime-passport-verifier
 
-go 1.21.6
+go 1.22
 
 require (
 	github.com/Masterminds/squirrel v1.5.4
@@ -18,6 +18,7 @@ require (
 	github.com/iden3/go-rapidsnark/verifier v0.0.5
 	github.com/imroc/req/v3 v3.43.1
 	github.com/rarimo/certificate-transparency-go v0.0.0-20240305114501-050b1f19639a
+	github.com/rarimo/rarime-points-svc v0.0.0-20240320140808-719069ac2e30
 	github.com/rubenv/sql-migrate v1.6.1
 	gitlab.com/distributed_lab/ape v1.7.1
 	gitlab.com/distributed_lab/dig v0.0.0-20230207152643-c44f80a4294c
@@ -97,6 +98,7 @@ require (
 	github.com/tklauser/go-sysconf v0.3.13 // indirect
 	github.com/tklauser/numcpus v0.7.0 // indirect
 	github.com/yusufpapurcu/wmi v1.2.4 // indirect
+	gitlab.com/distributed_lab/json-api-connector v0.2.7 // indirect
 	gitlab.com/distributed_lab/lorem v0.2.1 // indirect
 	gitlab.com/distributed_lab/running v1.6.0 // indirect
 	go.uber.org/mock v0.4.0 // indirect
@@ -114,3 +116,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	rsc.io/tmplfunc v0.0.3 // indirect
 )
+
+replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1

@@ -8,7 +8,7 @@ import (
 
 	"github.com/iden3/go-iden3-crypto/poseidon"
 	"github.com/imroc/req/v3"
-	"github.com/rarimo/passport-identity-provider/internal/config"
+	"github.com/rarimo/rarime-passport-verifier/internal/config"
 	"gitlab.com/distributed_lab/logan/v3"
 	"gitlab.com/distributed_lab/logan/v3/errors"
 )

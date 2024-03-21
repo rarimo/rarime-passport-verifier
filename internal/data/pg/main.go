@@ -1,7 +1,7 @@
 package pg
 
 import (
-	"github.com/rarimo/passport-identity-provider/internal/data"
+	"github.com/rarimo/rarime-passport-verifier/internal/data"
 	"gitlab.com/distributed_lab/kit/pgdb"
 )
 

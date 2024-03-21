@@ -1,8 +1,8 @@
 package cli
 
 import (
-	"github.com/rarimo/passport-identity-provider/internal/config"
-	"github.com/rarimo/passport-identity-provider/internal/service"
+	"github.com/rarimo/rarime-passport-verifier/internal/config"
+	"github.com/rarimo/rarime-passport-verifier/internal/service"
 	"gitlab.com/distributed_lab/logan/v3"
 
 	"github.com/alecthomas/kingpin"

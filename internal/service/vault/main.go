@@ -3,7 +3,7 @@ package vault
 import (
 	"context"
 	vaultapi "github.com/hashicorp/vault/api"
-	"github.com/rarimo/passport-identity-provider/internal/config"
+	"github.com/rarimo/rarime-passport-verifier/internal/config"
 	"gitlab.com/distributed_lab/figure/v3"
 	"gitlab.com/distributed_lab/logan/v3/errors"
 	"math/big"

@@ -9,8 +9,8 @@ import (
 	"github.com/iden3/contracts-abi/state/go/abi"
 	core "github.com/iden3/go-iden3-core/v2"
 	"github.com/iden3/go-iden3-core/v2/w3c"
-	"github.com/rarimo/passport-identity-provider/internal/service/api/requests"
-	"github.com/rarimo/passport-identity-provider/resources"
+	"github.com/rarimo/rarime-passport-verifier/internal/service/api/requests"
+	"github.com/rarimo/rarime-passport-verifier/resources"
 	"gitlab.com/distributed_lab/ape"
 	"gitlab.com/distributed_lab/ape/problems"
 )

@@ -5,10 +5,10 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/go-chi/chi"
 	stateabi "github.com/iden3/contracts-abi/state/go/abi"
-	"github.com/rarimo/passport-identity-provider/internal/data/pg"
-	"github.com/rarimo/passport-identity-provider/internal/service/api/handlers"
-	"github.com/rarimo/passport-identity-provider/internal/service/issuer"
-	"github.com/rarimo/passport-identity-provider/internal/service/vault"
+	"github.com/rarimo/rarime-passport-verifier/internal/data/pg"
+	"github.com/rarimo/rarime-passport-verifier/internal/service/api/handlers"
+	"github.com/rarimo/rarime-passport-verifier/internal/service/issuer"
+	"github.com/rarimo/rarime-passport-verifier/internal/service/vault"
 	"gitlab.com/distributed_lab/ape"
 )
 

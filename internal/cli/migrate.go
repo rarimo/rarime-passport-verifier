@@ -1,8 +1,8 @@
 package cli
 
 import (
-	"github.com/rarimo/passport-identity-provider/internal/assets"
-	"github.com/rarimo/passport-identity-provider/internal/config"
+	"github.com/rarimo/rarime-passport-verifier/internal/assets"
+	"github.com/rarimo/rarime-passport-verifier/internal/config"
 
 	migrate "github.com/rubenv/sql-migrate"
 	"gitlab.com/distributed_lab/logan/v3/errors"

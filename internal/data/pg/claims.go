@@ -5,7 +5,7 @@ import (
 	sq "github.com/Masterminds/squirrel"
 	"github.com/fatih/structs"
 	"github.com/google/uuid"
-	"github.com/rarimo/passport-identity-provider/internal/data"
+	"github.com/rarimo/rarime-passport-verifier/internal/data"
 	"gitlab.com/distributed_lab/kit/pgdb"
 )
 

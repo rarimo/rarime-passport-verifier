@@ -92,7 +92,7 @@ The only Issuer Node that is used is CreateCredential that issues claim. This cl
 ## Install
 
   ```
-  git clone github.com/rarimo/passport-identity-provider
+  git clone github.com/rarimo/rarime-passport-verifier
   cd identity-provider-service
   go build main.go
   export KV_VIPER_FILE=./config.yaml
@@ -126,8 +126,8 @@ Make sure that docker installed.
 use `docker run ` with `-p 8080:80` to expose port 80 to 8080
 
   ```
-  docker build -t github.com/rarimo/passport-identity-provider .
-  docker run -e KV_VIPER_FILE=/config.yaml github.com/rarimo/passport-identity-provider
+  docker build -t github.com/rarimo/rarime-passport-verifier .
+  docker run -e KV_VIPER_FILE=/config.yaml github.com/rarimo/rarime-passport-verifier
   ```
 
 ## Running from Source

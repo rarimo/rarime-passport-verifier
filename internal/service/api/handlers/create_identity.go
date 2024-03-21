@@ -43,6 +43,8 @@ const (
 	SHA256withRSA   = "SHA256withRSA"
 	SHA1withECDSA   = "SHA1withECDSA"
 	SHA256withECDSA = "SHA256withECDSA"
+
+	usaAuthorithy = 8571562
 )
 
 var algorithmsListMap = map[string]map[string]string{
@@ -156,7 +158,7 @@ func CreateIdentity(w http.ResponseWriter, r *http.Request) {
 
 	issuingAuthority, err := strconv.Atoi(req.Data.ZKProof.PubSignals[2])
 	if err != nil {
-		Log(r).WithError(err).Error("failed to convert string to int")
+		Log(r).WithError(err).Error("failed to convert PubSignals[2](string) to int")
 		ape.RenderErr(w, problems.InternalError())
 		return
 	}
@@ -166,8 +168,7 @@ func CreateIdentity(w http.ResponseWriter, r *http.Request) {
 			UserDID:    claim.UserDID,
 			Hash:       claim.DocumentHash,
 			SharedData: []string{"age", "nationality"},
-			// 8571562 is USA authority
-			IsUSA: 8571562 == issuingAuthority,
+			IsUSA:      usaAuthorithy == issuingAuthority,
 		})
 		if err != nil {
 			Log(r).WithError(err).Error("failed to verify passport and get points")
@@ -266,8 +267,7 @@ func CreateIdentity(w http.ResponseWriter, r *http.Request) {
 		UserDID:    req.Data.ID.String(),
 		Hash:       hash.String(),
 		SharedData: []string{"age", "nationality"},
-		// 8571562 is USA authority
-		IsUSA: 8571562 == issuingAuthority,
+		IsUSA:      usaAuthorithy == issuingAuthority,
 	})
 	if err != nil {
 		Log(r).WithError(err).Error("failed to verify passport and get points")

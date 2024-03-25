@@ -99,7 +99,7 @@ func EthClient(r *http.Request) *ethclient.Client {
 
 func CtxPoints(pointsCon *points.Client) func(context.Context) context.Context {
 	return func(ctx context.Context) context.Context {
-		return context.WithValue(ctx, pointsCtxKey, *pointsCon)
+		return context.WithValue(ctx, pointsCtxKey, pointsCon)
 	}
 }
 
